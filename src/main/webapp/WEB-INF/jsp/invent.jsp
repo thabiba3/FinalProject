@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +18,6 @@
 
         }
 
-        body{
-            background-color: #A9A9A9;
-        }
 
 
         #container {
@@ -44,7 +42,6 @@
             padding: 8px;
         }
 
-
         .topnav {
             background-color: #333;
             overflow: hidden;
@@ -68,6 +65,10 @@
             background-color: #FFFAF0;
             color: Black;
         }
+
+        body{
+            background-color: #A9A9A9;
+        }
     </style>
 
 
@@ -82,33 +83,50 @@
 </div>
 
 <div class="topnav">
-    <a  href="/">Home</a>
-    <a  class="active" href="/cust_list">Customer</a>
+    <a href="/">Home</a>
+    <a href="/cust_list">Customer</a>
     <a href="/emp_list">Employee</a>
-    <a href="/invent_list">Inventory</a>
+    <a  class="active" href="/invent_list">Inventory</a>
     <a href="/trans_list">Transaction</a>
 </div>
+
+<div class="searchi">
+    <form action="search" method="get" >
+        <input type="text" class="formseatch"  name="q" placeholder="Search here">
+
+    </form>
+</div>
+<%--<form action="<s:url value="/user/invent_search"/>">
+    <input type="text" name="freeText" placeholder="Enter Text to Search">
+    <button>Find</button>
+</form>--%>
+<%--<form action="/invent_list/search">
+    <input type="text" name="freeText" placeholder="Enter Text to Search">
+    <input type="submit" value="Search">
+</form>--%>
+
 
 <table>
     <tr>
         <%-- <th>Product ID</th>--%>
         <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name </th>
-            <th>Phone Number </th>
+        <th>Description</th>
+        <th>Price </th>
             <th>Edit/Delete </th>
 
     </tr>
-    <c:forEach var = "listitem" items = "${customerlist}">
+    <c:forEach var = "inventitem" items = "${inventorylist}">
         <tr>
-            <td>${listitem.getCustomerid()}</td>
-            <td>${listitem.getFirstname()}</td>
-            <td>${listitem.getLastname()}</td>
-                    <td>${listitem.getPhonenumber()}</td>
+
+                <%--<td>${listitem.getId()}</td>--%>
+            <td>${inventitem.getInventoryid()}</td>
+            <td>${inventitem.getDescription()}</td>
+            <td>${inventitem.getPrice()}</td>
             <td>
-                    <%--   <a href="/view/${listitem.getCustomerid()}">View</a>--%>
-                <a href="/editcust/${listitem.getCustomerid()}">Edit</a>
-              <a href="/deleteCust/${listitem.getCustomerid()}">Delete</a>
+                    <%--   <a href="/view/${listitem.getId()}">View</a>--%>
+                <a href="/edit/${inventitem.getInventoryid()}">Edit</a>
+
+                <a href="/delete_invent/${inventitem.getInventoryid()}"> Delete</a>
             </td>
 
 
@@ -120,16 +138,15 @@
 
 </table>
 
-<form method="post" action="/save_cust">
-    <input type="hidden" name="customerid" value="${selectedItem.getCustomerid()}">
-    <br>First Name: <br>
-    <input type="text" name="firstname" value="${selectedItem.getFirstname()}">
-    <br>
-    Last Name:<br>
-    <input type="text" name="lastname" value="${selectedItem.getLastname()}">
-    <br>
-    Phone Number:<br>
-    <input type="text" name="phonenumber" value="${selectedItem.getPhonenumber()}">
+
+
+
+<form method="post" action="/save">
+    <input type="hidden" name="inventoryid" value="${selectedItem.getInventoryid()}">
+    <br>Description: <br>
+    <input type="text" name="description" value="${selectedItem.getDescription()}">
+    <br>Price:<br>
+    <input type="text" name="price" value="${selectedItem.getPrice()}">
     <br><br>
     <input type="submit" value="Submit">
 </form>

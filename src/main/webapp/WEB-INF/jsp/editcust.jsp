@@ -89,36 +89,7 @@
     <a href="/trans_list">Transaction</a>
 </div>
 
-<table>
-    <tr>
-        <%-- <th>Product ID</th>--%>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name </th>
-            <th>Phone Number </th>
-            <th>Edit/Delete </th>
 
-    </tr>
-    <c:forEach var = "listitem" items = "${customerlist}">
-        <tr>
-            <td>${listitem.getCustomerid()}</td>
-            <td>${listitem.getFirstname()}</td>
-            <td>${listitem.getLastname()}</td>
-                    <td>${listitem.getPhonenumber()}</td>
-            <td>
-                    <%--   <a href="/view/${listitem.getCustomerid()}">View</a>--%>
-                <a href="/editcust/${listitem.getCustomerid()}">Edit</a>
-              <a href="/deleteCust/${listitem.getCustomerid()}">Delete</a>
-            </td>
-
-
-        </tr>
-        <br>
-
-    </c:forEach>
-
-
-</table>
 
 <form method="post" action="/save_cust">
     <input type="hidden" name="customerid" value="${selectedItem.getCustomerid()}">
@@ -128,7 +99,7 @@
     Last Name:<br>
     <input type="text" name="lastname" value="${selectedItem.getLastname()}">
     <br>
-    Phone Number:<br>
+  Phone Number:<br>
     <input type="text" name="phonenumber" value="${selectedItem.getPhonenumber()}">
     <br><br>
     <input type="submit" value="Submit">

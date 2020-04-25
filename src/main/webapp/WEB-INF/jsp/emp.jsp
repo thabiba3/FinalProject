@@ -17,9 +17,6 @@
 
         }
 
-        body{
-            background-color: #A9A9A9;
-        }
 
 
         #container {
@@ -68,6 +65,11 @@
             background-color: #FFFAF0;
             color: Black;
         }
+
+        body{
+            background-color: #A9A9A9;
+        }
+
     </style>
 
 
@@ -83,8 +85,8 @@
 
 <div class="topnav">
     <a  href="/">Home</a>
-    <a  class="active" href="/cust_list">Customer</a>
-    <a href="/emp_list">Employee</a>
+    <a href="/cust_list">Customer</a>
+    <a  class="active" href="/emp_list">Employee</a>
     <a href="/invent_list">Inventory</a>
     <a href="/trans_list">Transaction</a>
 </div>
@@ -96,21 +98,26 @@
         <th>First Name</th>
         <th>Last Name </th>
             <th>Phone Number </th>
+            <th>Email </th>
             <th>Edit/Delete </th>
 
-    </tr>
-    <c:forEach var = "listitem" items = "${customerlist}">
-        <tr>
-            <td>${listitem.getCustomerid()}</td>
-            <td>${listitem.getFirstname()}</td>
-            <td>${listitem.getLastname()}</td>
-                    <td>${listitem.getPhonenumber()}</td>
-            <td>
-                    <%--   <a href="/view/${listitem.getCustomerid()}">View</a>--%>
-                <a href="/editcust/${listitem.getCustomerid()}">Edit</a>
-              <a href="/deleteCust/${listitem.getCustomerid()}">Delete</a>
-            </td>
 
+    </tr>
+    <c:forEach var = "empitem" items = "${employeelist}">
+        <tr>
+
+                <%--<td>${listitem.getId()}</td>--%>
+            <td>${empitem.getEmployeeid()}</td>
+            <td>${empitem.getFirstname()}</td>
+            <td>${empitem.getLastname()}</td>
+                    <td>${empitem.getPhonenumber()}</td>
+                    <td>${empitem.getEmail()}</td>
+
+                    <td>
+                            <%--   <a href="/view/${listitem.getEmployeeid()}">View</a>--%>
+                     <a href="/editemp/${empitem.getEmployeeid()}">Edit</a>
+                      <a href="/deleteEmp/${empitem.getEmployeeid()}"> Delete</a></a>
+                    </td>
 
         </tr>
         <br>
@@ -120,20 +127,26 @@
 
 </table>
 
-<form method="post" action="/save_cust">
-    <input type="hidden" name="customerid" value="${selectedItem.getCustomerid()}">
-    <br>First Name: <br>
+<form method="post" action="/save_emp">
+    <br>
+    First Name:<br>
+    <input type="hidden" name="employeeid" value="${selectedItem.getEmployeeid()}">
     <input type="text" name="firstname" value="${selectedItem.getFirstname()}">
     <br>
     Last Name:<br>
     <input type="text" name="lastname" value="${selectedItem.getLastname()}">
     <br>
-    Phone Number:<br>
+    Phone Number: <br>
     <input type="text" name="phonenumber" value="${selectedItem.getPhonenumber()}">
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
+    <br>
+    Email: <br>
+    <input type="text" name="email" value="${selectedItem.getEmail()}">
+    <br>
+    <input type="submit"  value="save">
 
+
+    <%--    <input type="submit" value="Add">--%>
+</form>
 <footer>
 
 </footer>

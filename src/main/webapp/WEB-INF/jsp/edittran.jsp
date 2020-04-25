@@ -88,49 +88,29 @@
     <a href="/invent_list">Inventory</a>
     <a href="/trans_list">Transaction</a>
 </div>
-
-<table>
-    <tr>
-        <%-- <th>Product ID</th>--%>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name </th>
-            <th>Phone Number </th>
-            <th>Edit/Delete </th>
-
-    </tr>
-    <c:forEach var = "listitem" items = "${customerlist}">
-        <tr>
-            <td>${listitem.getCustomerid()}</td>
-            <td>${listitem.getFirstname()}</td>
-            <td>${listitem.getLastname()}</td>
-                    <td>${listitem.getPhonenumber()}</td>
-            <td>
-                    <%--   <a href="/view/${listitem.getCustomerid()}">View</a>--%>
-                <a href="/editcust/${listitem.getCustomerid()}">Edit</a>
-              <a href="/deleteCust/${listitem.getCustomerid()}">Delete</a>
-            </td>
-
-
-        </tr>
-        <br>
-
-    </c:forEach>
-
-
-</table>
-
-<form method="post" action="/save_cust">
-    <input type="hidden" name="customerid" value="${selectedItem.getCustomerid()}">
-    <br>First Name: <br>
-    <input type="text" name="firstname" value="${selectedItem.getFirstname()}">
+<%--
+<form method="post" action="/saveTrans">
+    <input type="hidden" name="transactionid" value="${selectedItem.getTransactionid()}">
+    Receipt Number:<br>
+    <input type="text" name="receiptnum" value="${selectedItem.getReceiptnum()}">
     <br>
-    Last Name:<br>
-    <input type="text" name="lastname" value="${selectedItem.getLastname()}">
+    <input type="submit" value="Submit">
+</form>--%>
+<form method="post" action="/saveTrans">
+    <input type="hidden" name="transactionid" value="${selectedItem.getTransactionid()}">
     <br>
-    Phone Number:<br>
-    <input type="text" name="phonenumber" value="${selectedItem.getPhonenumber()}">
-    <br><br>
+    Customer:<br>
+    <input type="text" name="customern" value="${selectedItem.getCustomeridfk()}">
+    <br>
+    Employee:<br>
+    <input type="text" name="employeen" value="${selectedItem.getEmployeeid()}">
+    <br>
+    Inventory:<br>
+    <input type="text" name="inventoryn" value="${selectedItem.getInventoryidfk()}">
+    <br>
+    Receipt Number:<br>
+    <input type="text" name="receiptnum" value="${selectedItem.getReceiptnum()}">
+    <br>
     <input type="submit" value="Submit">
 </form>
 
